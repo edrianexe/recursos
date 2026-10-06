@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Listo! · El Stack de IA · edrian.exe</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="fx fx--grid"></div>
+  <div class="fx fx--scanlines"></div>
+  <div class="fx fx--vignette"></div>
+
+  <main class="wrap" style="min-height:100vh; justify-content:center;">
+    <section class="hero" data-reveal style="text-align:center;">
+      <p class="kicker"><span class="bracket">[</span>&nbsp;DENTRO&nbsp;<span class="bracket">]</span></p>
+      <h1 class="hero__title" style="margin-bottom:14px;">Ya eres de los <span class="accent">de dentro</span>.</h1>
+      <p class="hero__sub" style="margin:0 auto 32px;">
+        Aquí tienes <strong>El Stack de IA</strong>. Te lo he enviado también al correo
+        — si no lo ves, revisa <em>spam</em> o <em>promociones</em> y arrástralo a tu bandeja
+        principal para no perderte lo que viene.
+      </p>
+
+      <div style="display:flex; flex-direction:column; align-items:center; gap:16px;">
+        <a class="cta cta--primary cta--big" href="El_Stack_de_IA_edrianexe.pdf" download>
+          <span class="cta__label">⬇ Descargar el PDF</span>
+        </a>
+        <p class="hero__trust" style="margin:0;">PDF · 8 páginas · 27 prompts + 3 flujos</p>
+      </div>
+    </section>
+
+    <section class="bio" data-reveal>
+      <div class="bio__inner" style="text-align:center;">
+        <p class="bio__text" style="margin-bottom:18px;">
+          ¿Te has quedado con ganas de más? <strong>El Vault de IA</strong> es el manual entero:
+          el criterio para trabajar con IA cuando la herramienta de hoy caduca mañana — con técnicas,
+          biblioteca de prompts y casos reales dentro. Precio de lanzamiento por estar aquí.
+        </p>
+        <a class="cta cta--primary" href="producto.html" style="margin-bottom:18px;"><span class="cta__label">Ver el Vault de IA →</span></a>
+        <p class="bio__text" style="margin:6px 0 14px; font-size:15px;">
+          Y un favor que vale oro: si el stack te sirve, <strong>compártelo</strong> o etiquétame al usarlo.
+        </p>
+        <div class="foot__links" style="justify-content:center; margin:0;">
+          <a href="https://instagram.com/edrian.exe" target="_blank" rel="noopener">Sígueme en Instagram</a>
+          <a href="stack.html">Mi stack de herramientas →</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <p class="foot__legal">© <span id="year"></span> Adrián Nicieza · edrian.exe · contacto@edrianexe.com</p>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("is-visible"); });
+  </script>
+</body>
+</html>

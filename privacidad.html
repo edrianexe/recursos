@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de privacidad · edrian.exe</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .legal { max-width: 60ch; }
+    .legal h2 { font-family: var(--font-display); font-size: 18px; margin: 28px 0 8px; color: var(--text); }
+    .legal p, .legal li { color: var(--text-mute); font-size: 15px; line-height: 1.6; }
+    .legal ul { padding-left: 20px; }
+    .legal li { margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+  <div class="fx fx--grid"></div>
+  <div class="fx fx--vignette"></div>
+  <main class="wrap">
+    <section class="legal" data-reveal>
+      <p class="kicker"><span class="bracket">[</span>&nbsp;LEGAL&nbsp;<span class="bracket">]</span></p>
+      <h1 class="hero__title" style="font-size:clamp(26px,4vw,38px);">Política de privacidad</h1>
+      <p>Tu confianza importa. Aquí va, claro y sin letra pequeña, qué hago con tus datos.</p>
+
+      <h2>Responsable</h2>
+      <p>Adrián Nicieza (edrian.exe). Avilés, España. Contacto: <a href="mailto:contacto@edrianexe.com">contacto@edrianexe.com</a>.</p>
+
+      <h2>Qué datos recojo</h2>
+      <p>Solo tu dirección de email, cuando te suscribes voluntariamente para recibir el recurso gratuito y mis comunicaciones.</p>
+
+      <h2>Para qué los uso</h2>
+      <ul>
+        <li>Enviarte el recurso que has pedido.</li>
+        <li>Mandarte emails con contenido, recursos y, ocasionalmente, ofertas de productos propios.</li>
+      </ul>
+      <p>No vendo ni cedo tu email a terceros.</p>
+
+      <h2>Base legal</h2>
+      <p>Tu consentimiento explícito, que das al marcar la casilla del formulario.</p>
+
+      <h2>Dónde se guardan</h2>
+      <p>En la plataforma de email marketing que utilizo (Kit, de ConvertKit LLC, con cláusulas contractuales tipo para transferencias a EE. UU.), conforme a su política de privacidad y al RGPD.</p>
+
+      <h2>Tus derechos</h2>
+      <p>Puedes darte de baja en cualquier momento con el enlace al pie de cada email, o pedirme acceso, rectificación o borrado escribiendo a <a href="mailto:contacto@edrianexe.com">contacto@edrianexe.com</a>.</p>
+
+      <p style="margin-top:32px;"><a href="index.html">← Volver</a></p>
+    </section>
+    <footer class="foot">
+      <p class="foot__legal">© <span id="year"></span> Adrián Nicieza · edrian.exe</p>
+    </footer>
+  </main>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.querySelectorAll("[data-reveal]").forEach(function(el){ el.classList.add("is-visible"); });
+  </script>
+</body>
+</html>

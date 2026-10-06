@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi stack de herramientas de IA · edrian.exe</title>
+  <meta name="description" content="Las herramientas de IA que Adrián (edrian.exe) usa de verdad cada semana. Para qué sirve cada una y cuál te puedes ahorrar." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Estilos propios de la página stack */
+    .tools { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    @media (min-width: 680px) { .tools { grid-template-columns: 1fr 1fr; } }
+    .tool {
+      position: relative; display: flex; flex-direction: column; padding: 22px 22px 20px;
+      background: linear-gradient(180deg, rgba(125,211,252,0.05) 0%, transparent 100%), rgba(10,21,48,0.55);
+      border: 1px solid var(--border); border-radius: var(--radius); transition: transform .25s, border-color .25s;
+    }
+    .tool:hover { transform: translateY(-3px); border-color: var(--border-2); }
+    .tool__head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+    .tool__name { font-family: var(--font-display); font-size: 19px; font-weight: 700; margin: 0; color: var(--text); }
+    .tool__tag { font: 600 10px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); white-space: nowrap; }
+    .tool__use { font-size: 14px; color: var(--text-mute); margin: 0 0 16px; line-height: 1.55; flex: 1; }
+    .tool__cta { align-self: flex-start; font: 700 12px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase;
+      color: var(--cyan); border: 1px solid var(--border-2); border-radius: 999px; padding: 9px 16px; transition: all .2s; }
+    .tool__cta:hover { background: rgba(34,211,238,0.1); color: var(--cyan-2); border-color: var(--cyan); }
+    .cat__title { font-family: var(--font-display); font-size: clamp(20px, 2.8vw, 26px); font-weight: 700; margin: 0 0 18px; letter-spacing: -.02em; }
+    .cat { display: flex; flex-direction: column; gap: 18px; }
+    .disclosure { font-size: 12px; color: var(--text-dim); line-height: 1.5; padding: 16px 18px; border: 1px dashed var(--border); border-radius: 12px; background: rgba(10,21,48,0.4); }
+  </style>
+</head>
+<body>
+  <div class="fx fx--grid"></div>
+  <div class="fx fx--scanlines"></div>
+  <div class="fx fx--vignette"></div>
+
+  <main class="wrap">
+    <section class="hero" data-reveal>
+      <p class="kicker"><span class="bracket">[</span>&nbsp;MI STACK&nbsp;<span class="bracket">]</span></p>
+      <h1 class="hero__title">Las herramientas que<br />uso <span class="accent">de verdad</span>.</h1>
+      <p class="hero__sub">
+        No las que están de moda. Las que abro cada semana y pagaría de mi bolsillo.
+        Para cada una te digo <strong>para qué la uso</strong> — y, cuando aplica, cuál te puedes ahorrar.
+      </p>
+      <p class="disclosure">
+        <strong>Transparencia:</strong> algunos enlaces son de afiliado. Si entras por ahí y te suscribes,
+        puede que me lleve una pequeña comisión, <strong>a ti no te cuesta más</strong> (a veces hasta menos).
+        Solo recomiendo lo que uso. Si dejo de usar algo, lo quito de aquí.
+      </p>
+    </section>
+
+    <!-- ░░ ASISTENTES IA ░░ -->
+    <section class="cat" data-reveal>
+      <h2 class="cat__title">🧠 Asistentes de IA (el motor)</h2>
+      <div class="tools">
+        <article class="tool">
+          <div class="tool__head"><h3 class="tool__name">ChatGPT Plus</h3><span class="tool__tag">Imprescindible</span></div>
+          <p class="tool__use">Mi navaja suiza para borradores, ideación y razonar en voz alta. El modo voz para pensar mientras camino.</p>
+          <a class="tool__cta" href="https://chatgpt.com" target="_blank" rel="noopener">Ver →</a>
+        </article>
+        <article class="tool">
+          <div class="tool__head"><h3 class="tool__name">Claude</h3><span class="tool__tag">Texto largo</span></div>
+          <p class="tool__use">Cuando necesito criterio, matiz y textos largos que no suenen a IA. Mi favorito para escribir y editar en serio.</p>
+          <a class="tool__cta" href="https://claude.ai" target="_blank" rel="noopener">Ver →</a>
+        </article>
+      </div>
+      <!-- NOTA EDRIAN: OpenAI y Anthropic NO tienen programa de afiliados (jun 2026).
+           Por eso estos dos van como recomendación honesta, sin enlace de afiliado.
+           Tu dinero de afiliación está en las herramientas de abajo. -->
+    </section>
+
+    <!-- ░░ CONTENIDO / VÍDEO ░░ -->
+    <section class="cat" data-reveal>
+      <h2 class="cat__title">🎬 Creación de contenido</h2>
+      <div class="tools">
+        <article class="tool">
+          <div class="tool__head"><h3 class="tool__name">ElevenLabs</h3><span class="tool__tag">Voz IA · afiliado</span></div>
+          <p class="tool__use">Voz en off y doblaje cuando hace falta. La mejor calidad en español. <strong>Afiliado: 22% recurrente</strong> los primeros 12 meses por suscriptor.</p>
+          <a class="tool__cta" href="#REEMPLAZA_AFILIADO_ELEVENLABS" target="_blank" rel="sponsored noopener">Probarlo →</a>
+        </article>
+        <article class="tool">
+          <div class="tool__head"><h3 class="tool__name">Descript</h3><span class="tool__tag">Transcribir · afiliado</span></div>
+          <p class="tool__use">Transcribe, edita vídeo por texto y limpia muletillas. Brutal para reaprovechar contenido largo. Tiene programa de afiliados.</p>
+          <a class="tool__cta" href="#REEMPLAZA_AFILIADO_DESCRIPT" target="_blank" rel="sponsored noopener">Probarlo →</a>
+        </article>
+        <article class="tool">
+          <div class="tool__head"><h3 class="tool__name">CapCut / Premiere</h3><span class="tool__tag">Edición</span></div>
+          <p class="tool__use">Para montar los reels. CapCut si voy rápido, Premiere cuando el proyecto lo merece.</p>
+          <a class="tool__cta" href="https://www.capcut.com" target="_blank" rel="noopener">Ver →</a>
+        </article>
+        <article class="tool">
+          <div class="tool__head"><h3 class="tool__name">Generador de imagen</h3><span class="tool__tag">Visual</span></div>
+          <p class="tool__use">Para portadas y guiones visuales. (Pon el que uses: Midjourney, Ideogram, Recraft… varios tienen afiliados.)</p>
+          <a class="tool__cta" href="#REEMPLAZA_AFILIADO_IMAGEN" target="_blank" rel="sponsored noopener">Ver →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ░░ PRODUCTIVIDAD / NEGOCIO ░░ -->
+    <section class="cat" data-reveal>
+      <h2 class="cat__title">⚙️ Productividad y negocio</h2>
+      <div class="tools">
+        <article class="tool">
+          <div class="tool__head"><h3 class="tool__name">ExpressVPN</h3><span class="tool__tag">Privacidad · afiliado ⭐</span></div>
+          <p class="tool__use">Para trabajar seguro fuera de casa y probar geo-contenido. <strong>Ya he trabajado con ellos</strong> — su programa de afiliados es de los que mejor pagan. La que recomiendo a mi familia.</p>
+          <a class="tool__cta" href="#REEMPLAZA_AFILIADO_EXPRESSVPN" target="_blank" rel="sponsored noopener">Ver →</a>
+        </article>
+        <article class="tool">
+          <div class="tool__head"><h3 class="tool__name">Notion</h3><span class="tool__tag">Cerebro · afiliado</span></div>
+          <p class="tool__use">Donde vive todo: ideas, calendario de contenido, briefs de marca. Mi segundo cerebro. Tiene programa de afiliados.</p>
+          <a class="tool__cta" href="#REEMPLAZA_AFILIADO_NOTION" target="_blank" rel="sponsored noopener">Ver →</a>
+        </article>
+        <article class="tool">
+          <div class="tool__head"><h3 class="tool__name">MailerLite</h3><span class="tool__tag">Email · afiliado</span></div>
+          <p class="tool__use">Con lo que gestiono esta misma lista. Sencillo, europeo, automatización sin dolor. <strong>Afiliado: 30% recurrente</strong>. (Lo recomiendas y encima te lo paga.)</p>
+          <a class="tool__cta" href="#REEMPLAZA_AFILIADO_MAILERLITE" target="_blank" rel="sponsored noopener">Probarlo →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ░░ CTA AL LEAD MAGNET ░░ -->
+    <section class="closer" data-reveal>
+      <h3 class="closer__title">¿Aún no tienes mis prompts?</h3>
+      <p class="closer__sub">El stack de herramientas es el 20%. Los prompts son el 80%.</p>
+      <a class="cta cta--primary cta--big" href="index.html"><span class="cta__label">Descargar El Stack de IA →</span></a>
+    </section>
+
+    <footer class="foot">
+      <div class="foot__links">
+        <a href="index.html">Inicio</a>
+        <a href="https://instagram.com/edrian.exe" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://youtube.com/@edrian.exe" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://mediakit.edrianexe.com" target="_blank" rel="noopener">Media kit</a>
+      </div>
+      <p class="foot__legal">© <span id="year"></span> Adrián Nicieza · edrian.exe · contacto@edrianexe.com</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

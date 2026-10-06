@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Stack de IA · edrian.exe — Recurso gratuito</title>
+  <meta name="description" content="27 prompts y 3 flujos de IA que Adrián (edrian.exe) abre cada semana, organizados por trabajo a hacer. Descárgalo gratis." />
+
+  <!-- Open Graph / redes -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="El Stack de IA de edrian.exe — gratis" />
+  <meta property="og:description" content="27 prompts y 3 flujos de IA que abro cada semana, organizados por trabajo a hacer." />
+  <meta property="og:image" content="assets/og.png" />
+  <meta property="og:url" content="https://recursos.edrianexe.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- capas de fondo -->
+  <div class="fx fx--grid"></div>
+  <div class="fx fx--scanlines"></div>
+  <div class="fx fx--vignette"></div>
+
+  <main class="wrap">
+
+    <!-- ░░ HERO ░░ -->
+    <section class="hero" data-reveal>
+      <p class="kicker"><span class="bracket">[</span>&nbsp;RECURSO GRATUITO&nbsp;<span class="bracket">]</span></p>
+
+      <h1 class="logo" data-glitch="edrian.exe">edrian.exe</h1>
+
+      <h2 class="hero__title">
+        El <span class="accent">Stack de IA</span> que uso<br />cada semana.
+      </h2>
+      <p class="hero__sub">
+        27 prompts y 3 flujos para pensar mejor, crear más rápido
+        y dejar de tragarte las respuestas genéricas de la IA.
+        <strong>Los que abro yo cada semana.</strong>
+      </p>
+
+      <!-- ░░ FORMULARIO ░░ -->
+      <form class="capture" id="capture-form" novalidate>
+        <div class="capture__row">
+          <input
+            type="email" id="email" name="email" required
+            inputmode="email" autocomplete="email"
+            placeholder="tu@email.com" class="capture__input" />
+          <button type="submit" class="cta cta--primary" id="submit-btn">
+            <span class="cta__label">Quiero el stack →</span>
+          </button>
+        </div>
+
+        <label class="capture__consent">
+          <input type="checkbox" id="consent" name="consent" required />
+          <span>
+            Acepto recibir el recurso y los emails de edrian.exe. Puedo darme
+            de baja cuando quiera. <a href="privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.
+          </span>
+        </label>
+
+        <p class="capture__msg" id="form-msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="hero__trust">
+        Ya lo usan parte de los <strong>+880K</strong> que me siguen en redes ·
+        sin spam · te das de baja en un clic
+      </p>
+
+      <p style="margin-top:18px;font:600 13px/1.5 var(--font-mono);letter-spacing:.02em;">
+        <a href="analizador.html" style="color:var(--cyan);border-bottom:1px solid rgba(34,211,238,.35);">
+          ¿Prefieres probar antes? → Analiza gratis si tu prompt está bien hecho
+        </a>
+      </p>
+    </section>
+
+    <!-- ░░ QUÉ HAY DENTRO ░░ -->
+    <section class="inside" data-reveal>
+      <p class="section__crumb"><span class="bracket">//</span> qué hay dentro</p>
+      <h3 class="section__title">Lo que abro yo cada día.</h3>
+
+      <div class="inside__grid">
+        <article class="feat">
+          <div class="feat__num">27</div>
+          <h4 class="feat__title">Prompts probados</h4>
+          <p class="feat__desc">Organizados en 5 bloques: pensar y decidir, crear contenido, investigar, automatizar y —mi sello— criticar y verificar.</p>
+        </article>
+        <article class="feat">
+          <div class="feat__num">3</div>
+          <h4 class="feat__title">Flujos encadenados</h4>
+          <p class="feat__desc">De idea suelta a vídeo publicable. De duda a decisión sin arrepentirte. De caos a sistema. Paso a paso.</p>
+        </article>
+        <article class="feat">
+          <div class="feat__num">7</div>
+          <h4 class="feat__title">Principios base</h4>
+          <p class="feat__desc">Para que dejes de copiar prompts y empieces a fabricar los tuyos. La diferencia entre usar la IA y pensar con ella.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ░░ MINI BIO / AUTORIDAD ░░ -->
+    <section class="bio" data-reveal>
+      <div class="bio__inner">
+        <p class="bio__text">
+          Soy <strong>Adrián Nicieza</strong> — <span class="accent">edrian.exe</span>.
+          Llevo 18+ años traduciendo tecnología compleja en utilidad práctica.
+          He trabajado con OpenAI, Microsoft, Lenovo y MediaMarkt, y lo que
+          comparto aquí lo uso cada día en mi propio trabajo.
+        </p>
+        <div class="bio__brands">
+          <span class="bio__brands-label">Confían en mi criterio</span>
+          <div class="bio__strip">
+            <span>OpenAI</span><span>Microsoft</span><span>Lenovo</span><span>MediaMarkt</span><span>ExpressVPN</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ CTA FINAL ░░ -->
+    <section class="closer" data-reveal>
+      <h3 class="closer__title">El conocimiento guardado<br />no rinde.</h3>
+      <p class="closer__sub">Coge el stack. Usa un prompt hoy.</p>
+      <button class="cta cta--primary cta--big" data-scroll-top>
+        <span class="cta__label">Descargar gratis →</span>
+      </button>
+    </section>
+
+    <!-- ░░ FOOTER ░░ -->
+    <footer class="foot">
+      <div class="foot__links">
+        <a href="producto.html">El Vault de IA</a>
+        <a href="analizador.html">Analizador de prompts</a>
+        <a href="stack.html">Mi stack de herramientas</a>
+        <a href="https://instagram.com/edrian.exe" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@edrian.exe" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://youtube.com/@edrian.exe" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://mediakit.edrianexe.com" target="_blank" rel="noopener">Media kit</a>
+      </div>
+      <p class="foot__legal">© <span id="year"></span> Adrián Nicieza · edrian.exe · Avilés, España · contacto@edrianexe.com</p>
+    </footer>
+
+  </main>
+
+  <script src="kit.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

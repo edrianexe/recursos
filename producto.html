@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Vault de IA · edrian.exe — La introducción a la IA que no caduca</title>
+  <meta name="description" content="Una introducción a la inteligencia artificial, de Turing a tu portátil, con la obsolescencia artificial de hilo. Historia, cómo funciona, técnicas y más de 40 prompts. 29 páginas ilustradas + bonus, por edrian.exe." />
+  <meta property="og:type" content="product" />
+  <meta property="og:title" content="El Vault de IA — la introducción a la IA que no caduca" />
+  <meta property="og:description" content="De Turing a tu portátil: la historia, cómo funciona y el criterio para usar la IA sin que te la cuele nadie. 29 páginas ilustradas + bonus." />
+  <meta property="og:image" content="assets/og-vault.png" />
+  <meta property="og:url" content="https://recursos.edrianexe.com/producto.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .price-box{ display:flex; flex-wrap:wrap; align-items:center; gap:18px 26px; padding:clamp(22px,3vw,30px);
+      background:linear-gradient(180deg,rgba(34,211,238,0.07),transparent),rgba(10,21,48,0.6);
+      border:1px solid var(--border-2); border-radius:var(--radius);
+      box-shadow:0 0 0 1px var(--cyan-glow),0 28px 60px -28px var(--cyan-glow); }
+    .price{ display:flex; align-items:baseline; gap:12px; }
+    .price__now{ font-family:var(--font-display); font-size:clamp(40px,6vw,60px); font-weight:700; color:var(--text); line-height:1; }
+    .price__old{ font:600 20px/1 var(--font-mono); color:var(--text-dim); text-decoration:line-through; }
+    .price__tag{ font:600 11px/1.4 var(--font-mono); letter-spacing:.1em; text-transform:uppercase; color:var(--pink); }
+    .price-box .cta{ margin-left:auto; }
+
+    /* Autoridad */
+    .proof{ text-align:center; }
+    .proof__line{ color:var(--text-mute); max-width:62ch; margin:0 auto 18px; font-size:clamp(15px,1.8vw,17px); }
+    .proof__strip{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px 22px; }
+    .proof__strip span{ font:700 15px/1 var(--font-display); color:var(--text-mute); letter-spacing:.01em; transition:color .2s,text-shadow .2s; }
+    .proof__strip span:hover{ color:var(--text); text-shadow:0 0 14px var(--cyan-glow); }
+
+    /* Dolor */
+    .pain{ display:grid; gap:16px; grid-template-columns:1fr; }
+    @media(min-width:680px){ .pain{ grid-template-columns:1fr 1fr; } }
+    .pcard{ padding:22px 24px; border:1px solid rgba(251,113,133,0.22); border-radius:var(--radius); background:rgba(10,21,48,0.5); }
+    .pcard b{ display:block; color:var(--text); font-size:16px; margin-bottom:6px; }
+    .pcard span{ color:var(--text-mute); font-size:14px; line-height:1.55; }
+    .stat{ margin-top:20px; padding:18px 22px; border-left:3px solid var(--cyan); background:rgba(34,211,238,0.05);
+      border-radius:0 12px 12px 0; color:var(--text); font-size:clamp(15px,1.8vw,17px); line-height:1.55; }
+    .stat b{ color:var(--cyan); }
+
+    /* Resultados */
+    .out{ display:flex; flex-direction:column; gap:12px; max-width:64ch; }
+    .out li{ position:relative; padding-left:30px; color:var(--text); font-size:clamp(15px,1.8vw,17px); line-height:1.5; }
+    .out li::before{ content:"✓"; position:absolute; left:0; top:0; color:var(--ok); font-weight:700; font-size:18px; }
+
+    /* Qué hay dentro */
+    .what{ display:grid; gap:14px; grid-template-columns:1fr; }
+    @media(min-width:680px){ .what{ grid-template-columns:1fr 1fr; } }
+    .wrow{ display:grid; grid-template-columns:24px 1fr; gap:12px; align-items:start;
+      padding:16px 18px; background:rgba(10,21,48,0.5); border:1px solid var(--border); border-radius:12px; }
+    .wrow b{ display:block; color:var(--text); font-size:15px; margin-bottom:3px; }
+    .wrow span{ color:var(--text-mute); font-size:13.5px; line-height:1.5; }
+    .wrow .i{ color:var(--cyan); font-size:18px; }
+
+    /* ¿Para ti? */
+    .forwho{ display:grid; gap:16px; grid-template-columns:1fr; }
+    @media(min-width:680px){ .forwho{ grid-template-columns:1fr 1fr; } }
+    .fcol{ padding:22px 24px; border:1px solid var(--border); border-radius:var(--radius); background:rgba(10,21,48,0.5); }
+    .fcol h4{ font-family:var(--font-display); font-size:18px; margin:0 0 14px; }
+    .fcol.yes h4{ color:var(--ok); } .fcol.no h4{ color:var(--err); }
+    .fcol ul{ display:flex; flex-direction:column; gap:9px; }
+    .fcol li{ font-size:14px; color:var(--text-mute); line-height:1.5; padding-left:22px; position:relative; }
+    .fcol.yes li::before{ content:"✓"; position:absolute; left:0; color:var(--ok); font-weight:700; }
+    .fcol.no li::before{ content:"✕"; position:absolute; left:0; color:var(--err); font-weight:700; }
+
+    /* Precio / valor */
+    .value{ display:flex; flex-direction:column; gap:16px; }
+    .value p{ color:var(--text-mute); font-size:clamp(15px,1.8vw,17px); line-height:1.6; margin:0; max-width:64ch; }
+    .value strong{ color:var(--text); }
+    .guarantee{ display:flex; gap:16px; align-items:center; padding:20px 24px; border:1px dashed var(--border-2);
+      border-radius:14px; background:linear-gradient(135deg,rgba(244,114,182,0.05),rgba(34,211,238,0.05)); }
+    .guarantee .g{ font-size:34px; } .guarantee p{ margin:0; font-size:14px; color:var(--text-mute); line-height:1.5; }
+
+    /* FAQ */
+    .faq__q{ font-weight:700; color:var(--text); margin:18px 0 4px; font-size:15.5px; }
+    .faq__a{ color:var(--text-mute); margin:0; font-size:14px; line-height:1.6; }
+
+    .cta-center{ text-align:center; margin-top:30px; }
+  </style>
+</head>
+<body>
+  <div class="fx fx--grid"></div>
+  <div class="fx fx--scanlines"></div>
+  <div class="fx fx--vignette"></div>
+
+  <main class="wrap">
+
+    <!-- ░░ HERO ░░ -->
+    <section class="hero" data-reveal>
+      <p class="kicker"><span class="bracket">[</span>&nbsp;EL VAULT DE IA · edrian.exe&nbsp;<span class="bracket">]</span></p>
+      <h1 class="hero__title">La introducción a la IA que no <span class="accent">caduca</span> cuando sale el próximo modelo.</h1>
+      <p class="hero__sub">
+        De Turing a tu portátil: la historia, cómo funciona por dentro, y el criterio
+        para usarla sin que te la cuele nadie. El manual que le daría a alguien que empieza hoy.
+      </p>
+
+      <div class="price-box">
+        <div>
+          <div class="price">
+            <span class="price__now">29&nbsp;€</span>
+            <span class="price__old">39&nbsp;€</span>
+          </div>
+          <p class="price__tag">Precio de lanzamiento · pago único</p>
+        </div>
+        <!-- REEMPLAZA el href por tu checkout de Lemon Squeezy -->
+        <a class="cta cta--primary cta--big" href="#REEMPLAZA_CHECKOUT_LEMONSQUEEZY">
+          <span class="cta__label">Quiero el Vault — 29 € →</span>
+        </a>
+      </div>
+      <p class="hero__trust" style="margin-top:16px;">29 páginas ilustradas · índice · 6 diagramas · +40 prompts · bonus de copia-pega · descarga inmediata · garantía</p>
+    </section>
+
+    <!-- ░░ AUTORIDAD ░░ -->
+    <section class="proof" data-reveal>
+      <p class="section__crumb" style="text-align:center;"><span class="bracket">//</span> quién lo escribe</p>
+      <p class="proof__line">
+        Soy <strong style="color:var(--text);">Adrián Nicieza</strong> — <span class="accent">edrian.exe</span>.
+        Coordino una acería a jornada completa, doy formación de IA a empresas y a organismos públicos,
+        y casi un millón de personas siguen mi trabajo. He colaborado con:
+      </p>
+      <div class="proof__strip">
+        <span>OpenAI</span><span>Microsoft</span><span>Lenovo</span><span>MediaMarkt</span><span>ExpressVPN</span>
+      </div>
+    </section>
+
+    <!-- ░░ DOLOR ░░ -->
+    <section data-reveal>
+      <p class="section__crumb"><span class="bracket">//</span> el problema</p>
+      <h3 class="section__title">Con la IA solo hay dos maneras de perder.</h3>
+      <div class="pain">
+        <div class="pcard"><b>Ignorarla</b><span>Y quedarte mirando cómo el de al lado hace en minutos lo que a ti te cuesta días. El "ya me pondré" tiene fecha de caducidad.</span></div>
+        <div class="pcard"><b>Perseguirla</b><span>Saltar de herramienta en herramienta, pagar cursos que caducan en un trimestre, y acabar agotado y sin un sistema que funcione.</span></div>
+      </div>
+      <p class="stat">El informe de MIT de 2025 fue claro: alrededor del <b>95% de los proyectos de IA</b> en empresas no devuelve nada. Y no por culpa de la herramienta — porque se suelta sin contexto ni criterio. Eso es exactamente lo que vas a aprender a tener.</p>
+    </section>
+
+    <!-- ░░ RESULTADOS ░░ -->
+    <section data-reveal>
+      <p class="section__crumb"><span class="bracket">//</span> para qué te sirve</p>
+      <h3 class="section__title">Cuando lo termines, vas a saber:</h3>
+      <ul class="out">
+        <li>Leer cualquier noticia de IA y separar lo que importa del humo.</li>
+        <li>Decidir qué tareas tuyas automatizar primero — y cuáles no tocar nunca.</li>
+        <li>Hablarle a un modelo para sacarle algo que no sea el promedio de internet.</li>
+        <li>Montar tu primer flujo que te ahorre horas, esta misma semana.</li>
+        <li>Cambiar de herramienta cuando salga una mejor, sin empezar de cero.</li>
+      </ul>
+      <div class="cta-center">
+        <a class="cta cta--primary cta--big" href="#REEMPLAZA_CHECKOUT_LEMONSQUEEZY"><span class="cta__label">Empezar por el Vault →</span></a>
+      </div>
+    </section>
+
+    <!-- ░░ QUÉ HAY DENTRO ░░ -->
+    <section data-reveal>
+      <p class="section__crumb"><span class="bracket">//</span> qué hay dentro</p>
+      <h3 class="section__title">Doce partes, de la teoría a tu primer flujo. Con índice e ilustrado.</h3>
+      <div class="what">
+        <div class="wrow"><div class="i">📜</div><div><b>La historia, en una línea</b><span>De Turing y Dartmouth a ELIZA, las redes neuronales, AlexNet, el transformer y ChatGPT. Sin esto, cada noticia te parece magia o amenaza.</span></div></div>
+        <div class="wrow"><div class="i">⚙️</div><div><b>Cómo funciona por dentro</b><span>Tokens, predicción, parámetros, alucinación. Sin matemáticas. Lo justo para dejar de tratar a la máquina como un oráculo.</span></div></div>
+        <div class="wrow"><div class="i">🧭</div><div><b>Obsolescencia artificial</b><span>El eje: por qué la herramienta de hoy es el Will Smith comiendo espaguetis de mañana, y cómo trabajar con eso a tu favor.</span></div></div>
+        <div class="wrow"><div class="i">✚</div><div><b>El pensador de flujos</b><span>La cruz tiempo-expertise: qué automatizar primero, qué llevar con revisión humana y qué no tocar. Con diagramas.</span></div></div>
+        <div class="wrow"><div class="i">🧰</div><div><b>Técnicas y biblioteca</b><span>Zero/few-shot, chain-of-thought, meta-prompting… con respaldo en investigación. Más de cuarenta prompts, sistemas y plantillas.</span></div></div>
+        <div class="wrow"><div class="i">🎯</div><div><b>Producción, errores y casos reales</b><span>Tus datos y los DPA, los errores que veo siempre, tres trabajos de principio a fin, y cómo montar tu primer flujo —y tu primer modelo local— hoy.</span></div></div>
+      </div>
+      <p class="stat" style="border-left-color:var(--pink); background:rgba(244,114,182,0.05); margin-top:18px;">➕ <b style="color:var(--pink);">Bonus incluido:</b> los más de cuarenta prompts en un archivo aparte, listos para copiar y pegar. Sin teclear de más.</p>
+    </section>
+
+    <!-- ░░ VISTAZO DENTRO ░░ -->
+    <section data-reveal>
+      <p class="section__crumb"><span class="bracket">//</span> un vistazo dentro</p>
+      <h3 class="section__title">No te lo cuento. Te lo enseño.</h3>
+      <figure style="margin:0;">
+        <img src="assets/peek-cruz.png" alt="La cruz tiempo / expertise: qué automatizar primero, qué llevar con revisión humana y qué no tocar."
+          style="width:100%; border:1px solid var(--border-2); border-radius:var(--radius); display:block; background:#fff;" loading="lazy" />
+        <figcaption style="margin-top:12px; font:500 13px/1.5 var(--font-mono); color:var(--text-dim); text-align:center;">
+          Una de las seis ilustraciones: la cruz para decidir qué automatizar. Lápiz, papel y criterio.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- ░░ ¿PARA TI? ░░ -->
+    <section data-reveal>
+      <p class="section__crumb"><span class="bracket">//</span> ¿es para ti?</p>
+      <h3 class="section__title">Te lo digo claro, antes de que pagues.</h3>
+      <div class="forwho">
+        <div class="fcol yes">
+          <h4>Sí, si…</h4>
+          <ul>
+            <li>Ya usas la IA pero sientes que le sacas el 20%.</li>
+            <li>No quieres trucos sueltos, quieres entenderla.</li>
+            <li>Te fías más de quien te dice lo que NO funciona que de quien promete magia.</li>
+            <li>Creas, negocias o decides, y quieres ir más rápido sin perder criterio.</li>
+          </ul>
+        </div>
+        <div class="fcol no">
+          <h4>No, si…</h4>
+          <ul>
+            <li>Buscas el botón mágico que lo hace todo por ti. No existe.</li>
+            <li>Quieres "500 prompts" para no abrir ninguno.</li>
+            <li>Esperas un ladrillo de 40 horas. Esto se lee en una tarde y se usa.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ PRECIO / VALOR / GARANTÍA ░░ -->
+    <section data-reveal>
+      <p class="section__crumb"><span class="bracket">//</span> el precio</p>
+      <h3 class="section__title">29 €. Una vez. Actualizaciones incluidas.</h3>
+      <div class="value">
+        <p>Un curso de IA cuesta entre 300 y 1.000 €, y la mitad estará caduco en un trimestre. Esto es <strong>menos que una hora de mi formación</strong>, pago único, y las actualizaciones van dentro — porque el panorama cambia y lo sé.</p>
+        <p>Es <strong>precio de lanzamiento</strong>. Sube a 39 € cuando el lanzamiento termine. Sin cronómetros de mentira: el día que suba, lo verás aquí.</p>
+        <div class="guarantee">
+          <div class="g">🤝</div>
+          <p><strong>El riesgo lo asumo yo:</strong> ábrelo, úsalo una semana, y si no te ha hecho mejor con la IA me escribes a contacto@edrianexe.com y te devuelvo el dinero. Sin preguntas raras.</p>
+        </div>
+      </div>
+      <div class="cta-center">
+        <a class="cta cta--primary cta--big" href="#REEMPLAZA_CHECKOUT_LEMONSQUEEZY"><span class="cta__label">Quiero el Vault — 29 € →</span></a>
+      </div>
+    </section>
+
+    <!-- ░░ FAQ ░░ -->
+    <section data-reveal>
+      <p class="section__crumb"><span class="bracket">//</span> dudas</p>
+      <h3 class="section__title">Las preguntas que me harías.</h3>
+      <p class="faq__q">¿En qué se diferencia del pack gratuito?</p>
+      <p class="faq__a">El gratuito (El Stack de IA) son 27 prompts para abrir boca. El Vault es el manual entero: la historia, cómo funciona por dentro, la obsolescencia artificial, la cruz de flujos, qué meter en producción, las técnicas con respaldo, la biblioteca completa y casos reales. El gratuito te da prompts; esto te da el criterio para que no dependas de ellos.</p>
+      <p class="faq__q">¿No se quedará desactualizado en unos meses?</p>
+      <p class="faq__a">Parte sí, y te lo aviso en la primera página del libro. Por eso las actualizaciones van incluidas. Y lo que de verdad te llevas —la historia, cómo funciona y el criterio— es justo lo que no caduca cuando sale el próximo modelo.</p>
+      <p class="faq__q">¿Sirve con ChatGPT, Claude, Gemini…?</p>
+      <p class="faq__a">Con todos. Lo que enseña es agnóstico: funciona con cualquier asistente de IA decente, el de hoy y el de dentro de un año.</p>
+      <p class="faq__q">¿Es para principiantes o avanzados?</p>
+      <p class="faq__a">Para ambos. Si empiezas, la historia y los principios te dan una base que no se cae. Si ya vas servido, los bloques de verificación, negociación y meta-prompts te suben el nivel.</p>
+      <p class="faq__q">¿Cuánto tarda en leerse?</p>
+      <p class="faq__a">Una tarde. Es un manual para usar, no un ladrillo para que se llene de polvo en la estantería.</p>
+    </section>
+
+    <!-- ░░ CIERRE ░░ -->
+    <section class="closer" data-reveal>
+      <h3 class="closer__title">La IA no te hace más listo.<br />Te hace más rápido. Aprovéchalo.</h3>
+      <p class="closer__sub">Empieza por entenderla. El resto viene solo.</p>
+      <a class="cta cta--primary cta--big" href="#REEMPLAZA_CHECKOUT_LEMONSQUEEZY"><span class="cta__label">Quiero el Vault — 29 € →</span></a>
+      <p class="hero__trust" style="margin-top:14px;">¿Aún con dudas? Escríbeme a contacto@edrianexe.com y te digo si es para ti. Si no lo es, te lo diré.</p>
+    </section>
+
+    <footer class="foot">
+      <div class="foot__links">
+        <a href="index.html">Recurso gratis</a>
+        <a href="analizador.html">Analizador</a>
+        <a href="stack.html">Mi stack</a>
+        <a href="https://instagram.com/edrian.exe" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <p class="foot__legal">© <span id="year"></span> Adrián Nicieza · edrian.exe · contacto@edrianexe.com</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
