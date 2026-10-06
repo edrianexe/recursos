@@ -282,7 +282,7 @@
     window.kitSubscribe(em, "diez", "10min").then(function (r) {
       if (!r.ok) throw 0;
       S.email = true; save(); cerrar("m-email");
-      toast("Hecho. Confirma en tu correo y te llega el Stack de IA.");
+      toast("Hecho. Confirma en tu correo y te llevo al Stack de IA.");
     }).catch(function () { msg.textContent = "No se ha podido enviar. Prueba en un momento."; msg.className = "capture__msg is-err"; });
   }
 
