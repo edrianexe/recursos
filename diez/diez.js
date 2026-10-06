@@ -366,7 +366,9 @@
   });
   $("btn-hoy").addEventListener("click", function () {
     if (!pool) return;
-    var sel = (S.cur && S.cur.d === hoy() && !S.reads.some(function (r) { return r.t === S.cur.t; })) ? { t: S.cur.t, tema: S.cur.tema } : elegir();
+    // Solo se retoma el concepto pendiente al entrar; con uno ya en pantalla, siempre trae otro
+    var pendiente = !cur && S.cur && S.cur.d === hoy() && !S.reads.some(function (r) { return r.t === S.cur.t; });
+    var sel = pendiente ? { t: S.cur.t, tema: S.cur.tema } : elegir();
     $("btn-hoy").querySelector(".cta__label").textContent = "Dame otro concepto →";
     mostrar(sel);
   });
