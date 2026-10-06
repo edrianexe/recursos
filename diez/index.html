@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>10 minutos al día · edrian.exe</title>
-  <meta name="description" content="Cada día, 10 minutos de algo que no sabes. Un concepto al azar de los mejores artículos de Wikipedia, tu constelación de conocimiento y un quiz cada domingo. Gratis." />
+  <meta name="description" content="Cada día, 10 minutos de algo que no sabes. Más de 4.600 conceptos de Wikipedia y de investigadores en The Conversation, tu constelación de conocimiento y un quiz cada domingo. Gratis." />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="10 minutos al día de algo que no sabes" />
   <meta property="og:description" content="Un concepto al azar, tu constelación de conocimiento y un quiz cada domingo. Gratis, sin registro." />
@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
-  <link rel="stylesheet" href="diez.css" />
+  <link rel="stylesheet" href="diez.css?v=2026-10-06b" />
 </head>
 <body>
   <div class="fx fx--grid"></div>
@@ -28,7 +28,7 @@
     <header class="dz-top" data-reveal>
       <p class="kicker"><span class="bracket">[</span>&nbsp;10 MINUTOS · edrian.exe&nbsp;<span class="bracket">]</span></p>
       <h1 class="hero__title">10 minutos al día<br />de <span class="accent">algo que no sabes</span>.</h1>
-      <p class="hero__sub">Un concepto al azar, elegido entre los <strong>1.328 mejores artículos</strong> de la Wikipedia en español. Lo lees, se enciende una estrella en tu mapa, y cada domingo te pongo a prueba.</p>
+      <p class="hero__sub">Un concepto al azar entre <strong>más de 4.600</strong>: los mejores artículos de la Wikipedia en español y una selección de textos de investigadores en <strong>The Conversation</strong>. Lo lees, se enciende una estrella en tu mapa, y cada domingo te pongo a prueba.</p>
 
       <div class="dz-stats" aria-label="Tu progreso">
         <div class="dz-stat"><span class="dz-stat__n" id="st-racha">0</span><span class="dz-stat__l">días de racha</span></div>
@@ -53,6 +53,7 @@
         <button class="dz-link" id="btn-otro" type="button">↻ Otro concepto</button>
       </div>
       <h2 class="dz-read__title" id="rd-titulo"></h2>
+      <div class="dz-firma" id="rd-firma" hidden></div>
       <figure class="dz-read__img" id="rd-fig" hidden><img id="rd-img" alt="" loading="lazy" /></figure>
       <div class="dz-progress" aria-hidden="true"><span id="rd-progress"></span></div>
       <div class="dz-read__body" id="rd-body"></div>
@@ -67,7 +68,7 @@
     <section class="dz-sky" data-reveal>
       <p class="section__crumb"><span class="bracket">//</span> tu constelación</p>
       <h3 class="section__title">Lo que ya sabes, en un mapa.</h3>
-      <p class="dz-sub">Cada concepto leído es una estrella. Seis constelaciones: cuanto más lees, más se ilumina el cielo.</p>
+      <p class="dz-sub">Cada concepto leído es una estrella. Siete constelaciones: cuanto más lees, más se ilumina el cielo.</p>
       <div class="dz-sky__wrap"><svg id="sky" viewBox="0 0 800 490" role="img" aria-label="Constelación de conceptos leídos"></svg></div>
       <div class="dz-sky__legend" id="sky-legend"></div>
       <div class="dz-actions dz-actions--center">
@@ -85,8 +86,8 @@
     <section class="inside" data-reveal>
       <p class="section__crumb"><span class="bracket">//</span> cómo funciona</p>
       <div class="inside__grid">
-        <article class="feat"><div class="feat__num">1</div><h4 class="feat__title">Un concepto al azar</h4><p class="feat__desc">Solo artículos destacados: los que la comunidad de Wikipedia ha revisado a fondo. Recortado a unos 10 minutos de lectura.</p></article>
-        <article class="feat"><div class="feat__num">2</div><h4 class="feat__title">Tu racha y tu mapa</h4><p class="feat__desc">Un concepto al día mantiene la racha. Cada uno enciende una estrella en su constelación: Ciencia, Historia, Arte, Mundo, Ideas o Tecnología.</p></article>
+        <article class="feat"><div class="feat__num">1</div><h4 class="feat__title">Un concepto al azar</h4><p class="feat__desc">Artículos destacados y buenos de Wikipedia, revisados a fondo por su comunidad, y artículos de salud y ciencia firmados por investigadores de universidades en The Conversation.</p></article>
+        <article class="feat"><div class="feat__num">2</div><h4 class="feat__title">Tu racha y tu mapa</h4><p class="feat__desc">Un concepto al día mantiene la racha. Cada uno enciende una estrella en su constelación: Ciencia, Salud, Historia, Arte, Mundo, Ideas o Tecnología.</p></article>
         <article class="feat"><div class="feat__num">3</div><h4 class="feat__title">El quiz del domingo</h4><p class="feat__desc">Preguntas sacadas de lo que has leído esa semana. Lo que repasas se queda; lo que no, se va.</p></article>
       </div>
       <p class="dz-sub" style="margin-top:18px;">Sin registro: tu progreso se guarda en este navegador (si cambias de móvil o borras los datos, empiezas de cero). Vuelve cada día desde el mismo dispositivo y el domingo tendrás tu quiz listo.</p>
@@ -98,9 +99,10 @@
       <div class="foot__links">
         <a href="../">Inicio</a>
         <a href="../privacidad.html">Privacidad</a>
-        <a href="https://es.wikipedia.org/wiki/Wikipedia:Art%C3%ADculos_destacados" target="_blank" rel="noopener">Fuente: Wikipedia</a>
+        <a href="https://es.wikipedia.org/wiki/Wikipedia:Art%C3%ADculos_destacados" target="_blank" rel="noopener">Wikipedia</a>
+        <a href="https://theconversation.com/es" target="_blank" rel="noopener">The Conversation</a>
       </div>
-      <p class="foot__legal">Textos de Wikipedia en español bajo licencia <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a> (extractos). © <span id="year"></span> Adrián Nicieza · edrian.exe</p>
+      <p class="foot__legal">Textos de Wikipedia en español (extractos, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a>) y de The Conversation España (íntegros, <a href="https://creativecommons.org/licenses/by-nd/4.0/deed.es" target="_blank" rel="noopener">CC BY-ND 4.0</a>). © <span id="year"></span> Adrián Nicieza · edrian.exe</p>
     </footer>
   </main>
 
@@ -154,6 +156,6 @@
 
   <script src="../kit.js"></script>
   <script src="../ecosistema.js"></script>
-  <script src="diez.js"></script>
+  <script src="diez.js?v=2026-10-06b"></script>
 </body>
 </html>

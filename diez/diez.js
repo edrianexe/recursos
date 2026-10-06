@@ -1,19 +1,20 @@
 /* 10 minutos al día · edrian.exe
-   Un artículo destacado de Wikipedia al azar, recortado a ~10 min, con racha, constelación,
+   Un artículo al azar (Wikipedia destacados+buenos o selección de The Conversation), recortado a ~10 min, con racha, constelación,
    quiz semanal (preguntas sacadas del propio texto leído) y tarjeta para compartir.
    Todo en el navegador: progreso en localStorage, textos vía API pública de Wikipedia. */
 (function () {
   "use strict";
 
-  var KEY = "diez.v1";
+  var KEY = "diez.v1", POOL_V = "2026-10-06b";   // subir POOL_V al regenerar el catálogo
   var WPM = 230, BUDGET = 2300;               // ~10 minutos de lectura
   var TEMAS = {
-    "Ciencia":        { c: "#22d3ee", x: 150, y: 125 },
-    "Historia":       { c: "#fbbf24", x: 400, y: 105 },
-    "Arte y cultura": { c: "#f472b6", x: 650, y: 130 },
-    "Mundo":          { c: "#34d399", x: 160, y: 345 },
-    "Ideas":          { c: "#a78bfa", x: 410, y: 355 },
-    "Tecnología":     { c: "#60a5fa", x: 650, y: 340 }
+    "Ciencia":        { c: "#22d3ee", x: 115, y: 120 },
+    "Salud":          { c: "#fb923c", x: 305, y: 100 },
+    "Historia":       { c: "#fbbf24", x: 495, y: 125 },
+    "Arte y cultura": { c: "#f472b6", x: 685, y: 105 },
+    "Mundo":          { c: "#34d399", x: 210, y: 345 },
+    "Ideas":          { c: "#a78bfa", x: 400, y: 355 },
+    "Tecnología":     { c: "#60a5fa", x: 590, y: 340 }
   };
   var NIVELES = [[0, "Curioso"], [50, "Aprendiz"], [150, "Explorador"], [350, "Erudito"], [700, "Polímata"], [1200, "Sabio"]];
   var SKIP = /^(véase también|notas|referencias|bibliografía|enlaces externos|fuentes|notas y referencias|galería|discografía|filmografía|lecturas adicionales|citas|notas al pie|obras|bibliografía adicional|referencias y notas|enlaces|otras lecturas)$/i;
@@ -57,6 +58,8 @@
   function rnd(a) { return a[Math.floor(Math.random() * a.length)]; }
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function clave(r) { return r.k || r.t; }
+  function enlace(r) { return r.u || wurl(r.t); }
   function wurl(t) { return "https://es.wikipedia.org/wiki/" + encodeURIComponent(t.replace(/ /g, "_")); }
   function toast(m) { var t = $("toast"); t.textContent = m; t.classList.add("on"); clearTimeout(toast._t); toast._t = setTimeout(function () { t.classList.remove("on"); }, 3200); }
 
@@ -85,7 +88,7 @@
     var box = $("hist-box"), ol = $("hist");
     box.hidden = !S.reads.length;
     ol.innerHTML = S.reads.slice(-30).reverse().map(function (r) {
-      return '<li><span>' + esc(r.d.slice(8) + "/" + r.d.slice(5, 7)) + '</span><a href="' + wurl(r.t) + '" target="_blank" rel="noopener">' + esc(r.t) + '</a><span style="margin-left:auto;color:' + TEMAS[r.tema].c + '">' + esc(r.tema) + "</span></li>";
+      return '<li><span>' + esc(r.d.slice(8) + "/" + r.d.slice(5, 7)) + '</span><a href="' + esc(enlace(r)) + '" target="_blank" rel="noopener">' + esc(r.t) + '</a><span style="margin-left:auto;color:' + TEMAS[r.tema].c + '">' + esc(r.tema) + "</span></li>";
     }).join("");
   }
 
@@ -94,8 +97,8 @@
     var por = {}; Object.keys(TEMAS).forEach(function (k) { por[k] = []; });
     S.reads.forEach(function (r, i) {
       var T = TEMAS[r.tema]; if (!T) return;
-      var h = hash(r.t), a = (h % 360) * Math.PI / 180, rad = 18 + ((h >>> 9) % 70);
-      por[r.tema].push({ x: T.x + Math.cos(a) * rad * 1.25, y: T.y + Math.sin(a) * rad * .8, t: r.t, i: i });
+      var h = hash(clave(r)), a = (h % 360) * Math.PI / 180, rad = 14 + ((h >>> 9) % 62);
+      por[r.tema].push({ x: T.x + Math.cos(a) * rad * 1.1, y: T.y + Math.sin(a) * rad * .8, t: r.t, i: i });
     });
     return por;
   }
@@ -105,29 +108,30 @@
     for (var i = 0; i < 90; i++) out.push('<circle cx="' + (pr() * 800).toFixed(1) + '" cy="' + (pr() * 490).toFixed(1) + '" r="' + (pr() * 1.1 + .3).toFixed(2) + '" fill="#9fb4e8" opacity="' + (pr() * .35 + .1).toFixed(2) + '"/>');
     Object.keys(TEMAS).forEach(function (k) {
       var T = TEMAS[k], st = por[k];
-      out.push('<circle cx="' + T.x + '" cy="' + T.y + '" r="95" fill="' + T.c + '" opacity="' + (st.length ? .05 : .025) + '"/>');
+      out.push('<circle cx="' + T.x + '" cy="' + T.y + '" r="85" fill="' + T.c + '" opacity="' + (st.length ? .05 : .025) + '"/>');
       for (var j = 1; j < st.length; j++) out.push('<line x1="' + st[j - 1].x.toFixed(1) + '" y1="' + st[j - 1].y.toFixed(1) + '" x2="' + st[j].x.toFixed(1) + '" y2="' + st[j].y.toFixed(1) + '" stroke="' + T.c + '" stroke-opacity=".35" stroke-width="1"/>');
       st.forEach(function (s) {
         out.push('<circle class="st' + (s.i === last ? " st--new" : "") + '" cx="' + s.x.toFixed(1) + '" cy="' + s.y.toFixed(1) + '" r="' + (s.i === last ? 6 : 4.2) + '" fill="' + T.c + '"><title>' + esc(s.t) + "</title></circle>");
         out.push('<circle cx="' + s.x.toFixed(1) + '" cy="' + s.y.toFixed(1) + '" r="11" fill="' + T.c + '" opacity=".12"/>');
       });
-      out.push('<text x="' + T.x + '" y="' + (T.y + 112) + '" text-anchor="middle" fill="' + T.c + '" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" opacity="' + (st.length ? 1 : .45) + '">' + esc(k.toUpperCase()) + " · " + st.length + "</text>");
+      out.push('<text x="' + T.x + '" y="' + (T.y + 108) + '" text-anchor="middle" fill="' + T.c + '" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" opacity="' + (st.length ? 1 : .45) + '">' + esc(k.toUpperCase()) + " · " + st.length + "</text>");
     });
     svg.innerHTML = out.join("");
     $("sky-legend").innerHTML = Object.keys(TEMAS).map(function (k) {
-      var tot = pool ? pool.temas[k].length : 0;
+      var tot = pool && pool.temas[k] ? pool.temas[k].length : 0;
       return '<div class="dz-leg"><span style="color:' + TEMAS[k].c + '">● ' + esc(k) + "</span><b>" + por[k].length + (tot ? "/" + tot : "") + "</b></div>";
     }).join("");
   }
 
   /* ── Elegir y cargar concepto ───────────────────────────────────────── */
+  function temasPool() { return Object.keys(TEMAS).filter(function (k) { return pool.temas[k] && pool.temas[k].length; }); }
   function elegir() {
-    var leidos = {}; S.reads.forEach(function (r) { leidos[r.t] = 1; });
+    var leidos = {}; S.reads.forEach(function (r) { leidos[clave(r)] = 1; });
     for (var n = 0; n < 50; n++) {
-      var tema = rnd(Object.keys(TEMAS)), t = rnd(pool.temas[tema]);
-      if (!leidos[t] && (!cur || cur.t !== t)) return { t: t, tema: tema };
+      var tema = rnd(temasPool()), t = rnd(pool.temas[tema]);
+      if (!leidos[t] && (!cur || cur.k !== t)) return { t: t, tema: tema };
     }
-    var tema2 = rnd(Object.keys(TEMAS)); return { t: rnd(pool.temas[tema2]), tema: tema2 };
+    var tema2 = rnd(temasPool()); return { t: rnd(pool.temas[tema2]), tema: tema2 };
   }
 
   function api(t) {
@@ -174,22 +178,24 @@
     }
     var base = t.replace(/\s*\(.*\)$/, ""), re = new RegExp(base.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
     var defin = frases.filter(function (f) { return f.length > 70 && f.length < 260 && re.test(f); })[0];
-    if (defin && pool) {
-      var otros = shuffle(pool.temas[tema].filter(function (x) { return x !== t; })).slice(0, 3);
+    if (defin && pool && pool.temas[tema]) {
+      var otros = shuffle(pool.temas[tema].filter(function (x) { return x !== t && x.indexOf("tc:") !== 0; })).slice(0, 3);
       qs.push({ tipo: "concepto", t: t, s: defin.replace(re, "____"), ok: t, o: shuffle([t].concat(otros)) });
     }
     return qs;
   }
 
   function mostrar(sel) {
-    cur = sel; S.cur = { t: sel.t, tema: sel.tema, d: hoy() }; save();
+    cur = sel; cur.k = sel.t; S.cur = { t: sel.t, tema: sel.tema, d: hoy() }; save();
     var box = $("lectura"); box.hidden = false;
     $("rd-tema").textContent = sel.tema; $("rd-tema").style.color = TEMAS[sel.tema].c;
-    $("rd-titulo").textContent = sel.t; $("rd-min").textContent = "cargando…";
+    $("rd-titulo").textContent = sel.t.indexOf("tc:") === 0 ? "" : sel.t; $("rd-min").textContent = "cargando…";
+    $("rd-firma").hidden = true;
     $("rd-fig").hidden = true;
     $("rd-body").innerHTML = '<div class="dz-skel" style="width:96%"></div><div class="dz-skel" style="width:88%"></div><div class="dz-skel" style="width:92%"></div><div class="dz-skel" style="width:60%"></div>';
     $("rd-attr").textContent = ""; $("btn-leido").disabled = true;
     box.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (sel.t.indexOf("tc:") === 0) return mostrarTC(sel);
     return api(sel.t).then(function (pg) {
       if (cur !== sel) return;
       var tr = trocear(pg.extract);
@@ -203,7 +209,7 @@
       var libro = (sel.tema === "Tecnología" || sel.tema === "Historia")
         ? ' · <a href="https://dashbook.es/book/500-paginas-web-que-debes-conocer" target="_blank" rel="noopener">¿Te va la historia? Mi libro cuenta cómo llegamos a internet →</a>' : "";
       $("rd-attr").innerHTML = 'Extracto de «<a href="' + wurl(pg.title) + '" target="_blank" rel="noopener">' + esc(pg.title) + '</a>», Wikipedia en español (<a href="' + wurl(pg.title) + '?action=history" target="_blank" rel="noopener">autores</a>), licencia <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a>.' + libro;
-      $("rd-mas").href = wurl(pg.title);
+      $("rd-mas").href = wurl(pg.title); $("rd-mas").textContent = "Seguir leyendo en Wikipedia →";
       curQs = preguntas(pg.title, sel.tema, tr.bloques);
       cur.t = pg.title;
       $("btn-leido").disabled = false;
@@ -215,10 +221,36 @@
     });
   }
 
+  /* Artículo de The Conversation (CC BY-ND): completo, sin editar, firmado y con su píxel */
+  function mostrarTC(sel) {
+    return fetch("tc/" + sel.t.slice(3) + ".json").then(function (r) { if (!r.ok) throw new Error("http"); return r.json(); }).then(function (a) {
+      if (cur !== sel) return;
+      $("rd-titulo").textContent = a.titulo;
+      $("rd-min").textContent = Math.max(1, Math.round(a.palabras / WPM)) + " min de lectura";
+      var firma = a.autores.map(function (x) { return "<strong>" + esc(x.n) + "</strong>" + (x.rol ? "<span>" + esc(x.rol) + "</span>" : ""); }).join("");
+      $("rd-firma").innerHTML = '<a class="dz-tc" href="' + esc(a.url) + '" target="_blank" rel="noopener">Publicado originalmente en <b>The Conversation</b></a>' + '<div class="dz-autores">' + firma + "</div>";
+      $("rd-firma").hidden = false;
+      $("rd-body").innerHTML = a.bloques.map(function (b) { return b.p ? "<p>" + esc(b.p) + "</p>" : "<h3>" + esc(b.t) + "</h3>"; }).join("") +
+        '<img src="' + esc(a.pixel) + '" alt="" width="1" height="1" style="border:none;width:1px;height:1px;position:absolute" referrerpolicy="no-referrer-when-downgrade">';
+      $("rd-attr").innerHTML = 'Este artículo fue publicado originalmente en <a href="https://theconversation.com/es" target="_blank" rel="noopener">The Conversation</a>. Lea el <a href="' + esc(a.url) + '" target="_blank" rel="noopener">original</a>. Licencia <a href="https://creativecommons.org/licenses/by-nd/4.0/deed.es" target="_blank" rel="noopener">CC BY-ND 4.0</a>.' +
+        (a.clausula ? '<br><span class="dz-clausula">Cláusula de divulgación: ' + esc(a.clausula) + "</span>" : "");
+      $("rd-mas").href = a.url; $("rd-mas").textContent = "Ver el original en The Conversation →";
+      curQs = preguntas(a.titulo, sel.tema, a.bloques.filter(function (b) { return b.p; }));
+      cur.t = a.titulo; cur.u = a.url;
+      $("btn-leido").disabled = false;
+    }).catch(function () {
+      if (cur !== sel) return;
+      var otro = elegir(); return mostrar(otro);
+    });
+  }
+
   function marcarLeido() {
     if (!cur) return;
     var yaHoy = leidoHoy();
-    S.reads.push({ t: cur.t, tema: cur.tema, d: hoy(), q: curQs });
+    var reg = { t: cur.t, tema: cur.tema, d: hoy(), q: curQs };
+    if (cur.k !== cur.t) reg.k = cur.k;
+    if (cur.u) reg.u = cur.u;
+    S.reads.push(reg);
     S.xp += 10 + (yaHoy ? 0 : 5);
     S.cur = null; var tema = cur.tema; cur = null; save();
     $("lectura").hidden = true;
@@ -358,16 +390,16 @@
   document.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("is-visible"); });
   pintaEstado();
   $("btn-hoy").disabled = true;
-  fetch("pool.json").then(function (r) { return r.json(); }).then(function (p) {
+  fetch("pool.json?v=" + POOL_V).then(function (r) { return r.json(); }).then(function (p) {
     pool = p; $("btn-hoy").disabled = false; pintaCielo();
-    if (S.cur && S.cur.d === hoy() && !S.reads.some(function (r) { return r.t === S.cur.t; })) {
-      $("btn-hoy").querySelector(".cta__label").textContent = "Seguir con «" + S.cur.t + "» →";
+    if (S.cur && S.cur.d === hoy() && !S.reads.some(function (r) { return clave(r) === S.cur.t; })) {
+      $("btn-hoy").querySelector(".cta__label").textContent = S.cur.t.indexOf("tc:") === 0 ? "Seguir con tu lectura de hoy →" : "Seguir con «" + S.cur.t + "» →";
     }
   });
   $("btn-hoy").addEventListener("click", function () {
     if (!pool) return;
     // Solo se retoma el concepto pendiente al entrar; con uno ya en pantalla, siempre trae otro
-    var pendiente = !cur && S.cur && S.cur.d === hoy() && !S.reads.some(function (r) { return r.t === S.cur.t; });
+    var pendiente = !cur && S.cur && S.cur.d === hoy() && !S.reads.some(function (r) { return clave(r) === S.cur.t; });
     var sel = pendiente ? { t: S.cur.t, tema: S.cur.tema } : elegir();
     $("btn-hoy").querySelector(".cta__label").textContent = "Dame otro concepto →";
     mostrar(sel);
