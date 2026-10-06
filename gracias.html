@@ -20,8 +20,8 @@
       <p class="kicker"><span class="bracket">[</span>&nbsp;DENTRO&nbsp;<span class="bracket">]</span></p>
       <h1 class="hero__title" style="margin-bottom:14px;">Ya eres de los <span class="accent">de dentro</span>.</h1>
       <p class="hero__sub" style="margin:0 auto 32px;">
-        Aquí tienes <strong>El Stack de IA</strong>. Te lo he enviado también al correo
-        — si no lo ves, revisa <em>spam</em> o <em>promociones</em> y arrástralo a tu bandeja
+        Aquí tienes <strong>El Stack de IA</strong>. Para confirmar tu suscripción te llega un email: <strong>pulsa el botón de confirmar</strong>
+        y te mando también los enlaces. Si no lo ves, revisa <em>spam</em> o <em>promociones</em> y arrástralo a tu bandeja
         principal para no perderte lo que viene.
       </p>
 
@@ -30,6 +30,12 @@
           <span class="cta__label">⬇ Descargar el PDF</span>
         </a>
         <p class="hero__trust" style="margin:0;">PDF · 8 páginas · 27 prompts + 3 flujos</p>
+        <a class="cta" href="El_Sistema_de_Correo_edrianexe.pdf" download style="margin-top:6px;">
+          <span class="cta__label">⬇ Bonus: mi sistema de correo con IA</span>
+        </a>
+        <p style="margin:6px 0 0;font:600 13px/1.5 var(--font-mono);">
+          <a href="diez/" style="color:var(--pink);">Y si te va aprender algo nuevo cada día → 10 minutos al día</a>
+        </p>
       </div>
     </section>
 
@@ -51,6 +57,8 @@
       </div>
     </section>
 
+    <div data-ecosistema data-skip=""></div>
+
     <footer class="foot">
       <p class="foot__legal">© <span id="year"></span> Adrián Nicieza · edrian.exe · contacto@edrianexe.com</p>
     </footer>
@@ -60,5 +68,6 @@
     document.getElementById("year").textContent = new Date().getFullYear();
     document.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("is-visible"); });
   </script>
+  <script src="ecosistema.js"></script>
 </body>
 </html>

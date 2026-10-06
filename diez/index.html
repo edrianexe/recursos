@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10 minutos al día · edrian.exe</title>
+  <meta name="description" content="Cada día, 10 minutos de algo que no sabes. Un concepto al azar de los mejores artículos de Wikipedia, tu constelación de conocimiento y un quiz cada domingo. Gratis." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="10 minutos al día de algo que no sabes" />
+  <meta property="og:description" content="Un concepto al azar, tu constelación de conocimiento y un quiz cada domingo. Gratis, sin registro." />
+  <meta property="og:image" content="https://edrianexe.github.io/recursos/assets/og-diez.png" />
+  <meta property="og:url" content="https://edrianexe.github.io/recursos/diez/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#050816" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="diez.css" />
+</head>
+<body>
+  <div class="fx fx--grid"></div>
+  <div class="fx fx--vignette"></div>
+
+  <main class="wrap dz">
+
+    <!-- ░░ CABECERA + ESTADO ░░ -->
+    <header class="dz-top" data-reveal>
+      <p class="kicker"><span class="bracket">[</span>&nbsp;10 MINUTOS · edrian.exe&nbsp;<span class="bracket">]</span></p>
+      <h1 class="hero__title">10 minutos al día<br />de <span class="accent">algo que no sabes</span>.</h1>
+      <p class="hero__sub">Un concepto al azar, elegido entre los <strong>1.328 mejores artículos</strong> de la Wikipedia en español. Lo lees, se enciende una estrella en tu mapa, y cada domingo te pongo a prueba.</p>
+
+      <div class="dz-stats" aria-label="Tu progreso">
+        <div class="dz-stat"><span class="dz-stat__n" id="st-racha">0</span><span class="dz-stat__l">días de racha</span></div>
+        <div class="dz-stat"><span class="dz-stat__n" id="st-leidos">0</span><span class="dz-stat__l">conceptos</span></div>
+        <div class="dz-stat"><span class="dz-stat__n" id="st-xp">0</span><span class="dz-stat__l">puntos</span></div>
+        <div class="dz-stat dz-stat--nivel"><span class="dz-stat__n" id="st-nivel">Curioso</span><span class="dz-stat__l" id="st-next">nivel</span></div>
+      </div>
+      <div class="dz-bar" aria-hidden="true"><span id="st-bar"></span></div>
+
+      <div class="dz-actions">
+        <button class="cta cta--primary cta--big" id="btn-hoy"><span class="cta__label">Dame mis 10 minutos →</span></button>
+        <button class="dz-ghost" id="btn-quiz" hidden>🧠 Quiz de la semana</button>
+      </div>
+      <p class="dz-hint" id="hoy-hint"></p>
+    </header>
+
+    <!-- ░░ LECTURA ░░ -->
+    <article class="dz-read" id="lectura" hidden>
+      <div class="dz-read__meta">
+        <span class="dz-chip" id="rd-tema"></span>
+        <span class="dz-chip dz-chip--mute" id="rd-min"></span>
+        <button class="dz-link" id="btn-otro" type="button">↻ Otro concepto</button>
+      </div>
+      <h2 class="dz-read__title" id="rd-titulo"></h2>
+      <figure class="dz-read__img" id="rd-fig" hidden><img id="rd-img" alt="" loading="lazy" /></figure>
+      <div class="dz-progress" aria-hidden="true"><span id="rd-progress"></span></div>
+      <div class="dz-read__body" id="rd-body"></div>
+      <p class="dz-attr" id="rd-attr"></p>
+      <div class="dz-done">
+        <button class="cta cta--primary cta--big" id="btn-leido"><span class="cta__label">✓ Leído: enciende mi estrella</span></button>
+        <a class="dz-link" id="rd-mas" target="_blank" rel="noopener">Seguir leyendo en Wikipedia →</a>
+      </div>
+    </article>
+
+    <!-- ░░ CONSTELACIÓN ░░ -->
+    <section class="dz-sky" data-reveal>
+      <p class="section__crumb"><span class="bracket">//</span> tu constelación</p>
+      <h3 class="section__title">Lo que ya sabes, en un mapa.</h3>
+      <p class="dz-sub">Cada concepto leído es una estrella. Seis constelaciones: cuanto más lees, más se ilumina el cielo.</p>
+      <div class="dz-sky__wrap"><svg id="sky" viewBox="0 0 800 490" role="img" aria-label="Constelación de conceptos leídos"></svg></div>
+      <div class="dz-sky__legend" id="sky-legend"></div>
+      <div class="dz-actions dz-actions--center">
+        <button class="dz-ghost" id="btn-share">📤 Compartir mi constelación</button>
+      </div>
+    </section>
+
+    <!-- ░░ HISTORIAL ░░ -->
+    <section class="dz-hist" data-reveal id="hist-box" hidden>
+      <p class="section__crumb"><span class="bracket">//</span> ya leídos</p>
+      <ol class="dz-hist__list" id="hist"></ol>
+    </section>
+
+    <!-- ░░ CÓMO FUNCIONA ░░ -->
+    <section class="inside" data-reveal>
+      <p class="section__crumb"><span class="bracket">//</span> cómo funciona</p>
+      <div class="inside__grid">
+        <article class="feat"><div class="feat__num">1</div><h4 class="feat__title">Un concepto al azar</h4><p class="feat__desc">Solo artículos destacados: los que la comunidad de Wikipedia ha revisado a fondo. Recortado a unos 10 minutos de lectura.</p></article>
+        <article class="feat"><div class="feat__num">2</div><h4 class="feat__title">Tu racha y tu mapa</h4><p class="feat__desc">Un concepto al día mantiene la racha. Cada uno enciende una estrella en su constelación: Ciencia, Historia, Arte, Mundo, Ideas o Tecnología.</p></article>
+        <article class="feat"><div class="feat__num">3</div><h4 class="feat__title">El quiz del domingo</h4><p class="feat__desc">Preguntas sacadas de lo que has leído esa semana. Lo que repasas se queda; lo que no, se va.</p></article>
+      </div>
+      <p class="dz-sub" style="margin-top:18px;">Sin registro: tu progreso se guarda en este navegador. Si quieres no perderlo y que te llegue el recordatorio del domingo, déjame tu email cuando leas el primero.</p>
+    </section>
+
+    <div data-ecosistema data-base="../" data-skip="diez/"></div>
+
+    <footer class="foot">
+      <div class="foot__links">
+        <a href="../">Inicio</a>
+        <a href="../privacidad.html">Privacidad</a>
+        <a href="https://es.wikipedia.org/wiki/Wikipedia:Art%C3%ADculos_destacados" target="_blank" rel="noopener">Fuente: Wikipedia</a>
+      </div>
+      <p class="foot__legal">Textos de Wikipedia en español bajo licencia <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a> (extractos). © <span id="year"></span> Adrián Nicieza · edrian.exe</p>
+    </footer>
+  </main>
+
+  <!-- ░░ MODAL EMAIL ░░ -->
+  <div class="dz-modal" id="m-email" hidden role="dialog" aria-modal="true" aria-labelledby="me-t">
+    <div class="dz-modal__box">
+      <button class="dz-modal__x" data-close aria-label="Cerrar">×</button>
+      <p class="kicker"><span class="bracket">[</span>&nbsp;PRIMERA ESTRELLA&nbsp;<span class="bracket">]</span></p>
+      <h3 id="me-t" class="dz-modal__t">Guarda tu racha.</h3>
+      <p class="dz-modal__p">Te mando el recordatorio del quiz cada domingo y, de regalo, <strong>El Stack de IA</strong> (27 prompts que uso cada semana). Un email a la semana, sin spam, baja en un clic.</p>
+      <form class="capture" id="f-email" novalidate>
+        <div class="capture__row">
+          <input type="email" id="fe-email" required inputmode="email" autocomplete="email" placeholder="tu@email.com" class="capture__input" />
+          <button type="submit" class="cta cta--primary"><span class="cta__label">Guardar →</span></button>
+        </div>
+        <label class="capture__consent">
+          <input type="checkbox" id="fe-consent" required />
+          <span>Acepto recibir los emails de edrian.exe. <a href="../privacidad.html" target="_blank" rel="noopener">Privacidad</a>.</span>
+        </label>
+        <p class="capture__msg" id="fe-msg" role="status" aria-live="polite"></p>
+      </form>
+      <button class="dz-link" data-close>Ahora no, sigo sin email</button>
+    </div>
+  </div>
+
+  <!-- ░░ MODAL QUIZ ░░ -->
+  <div class="dz-modal" id="m-quiz" hidden role="dialog" aria-modal="true" aria-labelledby="mq-t">
+    <div class="dz-modal__box dz-modal__box--quiz">
+      <button class="dz-modal__x" data-close aria-label="Cerrar">×</button>
+      <p class="kicker" id="mq-k"></p>
+      <h3 id="mq-t" class="dz-modal__t"></h3>
+      <p class="dz-quiz__q" id="mq-q"></p>
+      <div class="dz-quiz__opts" id="mq-opts"></div>
+      <p class="dz-quiz__fb" id="mq-fb" aria-live="polite"></p>
+      <button class="cta cta--primary" id="mq-next" hidden><span class="cta__label">Siguiente →</span></button>
+    </div>
+  </div>
+
+  <!-- ░░ MODAL COMPARTIR ░░ -->
+  <div class="dz-modal" id="m-share" hidden role="dialog" aria-modal="true" aria-label="Compartir">
+    <div class="dz-modal__box">
+      <button class="dz-modal__x" data-close aria-label="Cerrar">×</button>
+      <canvas id="share-canvas" width="1080" height="1350" class="dz-share__img"></canvas>
+      <div class="dz-actions dz-actions--center">
+        <button class="cta cta--primary" id="btn-share-go"><span class="cta__label">Compartir / descargar</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dz-toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../kit.js"></script>
+  <script src="../ecosistema.js"></script>
+  <script src="diez.js"></script>
+</body>
+</html>

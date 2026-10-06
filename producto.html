@@ -8,8 +8,8 @@
   <meta property="og:type" content="product" />
   <meta property="og:title" content="El Vault de IA — la introducción a la IA que no caduca" />
   <meta property="og:description" content="De Turing a tu portátil: la historia, cómo funciona y el criterio para usar la IA sin que te la cuele nadie. 29 páginas ilustradas + bonus." />
-  <meta property="og:image" content="assets/og-vault.png" />
-  <meta property="og:url" content="https://recursos.edrianexe.com/producto.html" />
+  <meta property="og:image" content="https://edrianexe.github.io/recursos/assets/og-vault.png" />
+  <meta property="og:url" content="https://edrianexe.github.io/recursos/producto.html" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -107,8 +107,7 @@
           </div>
           <p class="price__tag">Precio de lanzamiento · pago único</p>
         </div>
-        <!-- REEMPLAZA el href por tu checkout de Lemon Squeezy -->
-        <a class="cta cta--primary cta--big" href="#REEMPLAZA_CHECKOUT_LEMONSQUEEZY">
+        <a class="cta cta--primary cta--big" href="#avisame" data-checkout>
           <span class="cta__label">Quiero el Vault — 29 € →</span>
         </a>
       </div>
@@ -151,7 +150,7 @@
         <li>Cambiar de herramienta cuando salga una mejor, sin empezar de cero.</li>
       </ul>
       <div class="cta-center">
-        <a class="cta cta--primary cta--big" href="#REEMPLAZA_CHECKOUT_LEMONSQUEEZY"><span class="cta__label">Empezar por el Vault →</span></a>
+        <a class="cta cta--primary cta--big" href="#avisame" data-checkout><span class="cta__label">Empezar por el Vault →</span></a>
       </div>
     </section>
 
@@ -221,7 +220,7 @@
         </div>
       </div>
       <div class="cta-center">
-        <a class="cta cta--primary cta--big" href="#REEMPLAZA_CHECKOUT_LEMONSQUEEZY"><span class="cta__label">Quiero el Vault — 29 € →</span></a>
+        <a class="cta cta--primary cta--big" href="#avisame" data-checkout><span class="cta__label">Quiero el Vault — 29 € →</span></a>
       </div>
     </section>
 
@@ -245,9 +244,29 @@
     <section class="closer" data-reveal>
       <h3 class="closer__title">La IA no te hace más listo.<br />Te hace más rápido. Aprovéchalo.</h3>
       <p class="closer__sub">Empieza por entenderla. El resto viene solo.</p>
-      <a class="cta cta--primary cta--big" href="#REEMPLAZA_CHECKOUT_LEMONSQUEEZY"><span class="cta__label">Quiero el Vault — 29 € →</span></a>
+      <a class="cta cta--primary cta--big" href="#avisame" data-checkout><span class="cta__label">Quiero el Vault — 29 € →</span></a>
       <p class="hero__trust" style="margin-top:14px;">¿Aún con dudas? Escríbeme a contacto@edrianexe.com y te digo si es para ti. Si no lo es, te lo diré.</p>
     </section>
+
+    <!-- ░░ LISTA DE ESPERA (se oculta sola cuando hay checkout) ░░ -->
+    <section class="closer" id="avisame" data-reveal>
+      <p class="kicker"><span class="bracket">[</span>&nbsp;APERTURA&nbsp;<span class="bracket">]</span></p>
+      <h3 class="closer__title">El Vault abre muy pronto.</h3>
+      <p class="closer__sub">Déjame tu email y te aviso el primero, con el precio de lanzamiento de 29 €.</p>
+      <form class="capture" id="espera-form" novalidate style="margin:18px auto 0;max-width:520px;">
+        <div class="capture__row">
+          <input type="email" id="espera-email" required inputmode="email" autocomplete="email" placeholder="tu@email.com" class="capture__input" />
+          <button type="submit" class="cta cta--primary"><span class="cta__label">Avísame →</span></button>
+        </div>
+        <label class="capture__consent">
+          <input type="checkbox" id="espera-consent" required />
+          <span>Acepto recibir el aviso y los emails de edrian.exe. Baja en un clic. <a href="privacidad.html" target="_blank" rel="noopener">Privacidad</a>.</span>
+        </label>
+        <p class="capture__msg" id="espera-msg" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <div data-ecosistema data-skip="producto.html"></div>
 
     <footer class="foot">
       <div class="foot__links">
@@ -260,6 +279,33 @@
     </footer>
   </main>
 
+  <script src="kit.js"></script>
+  <script>
+    /* Checkout del Vault: pega aquí la URL de Lemon Squeezy y todos los botones pasan a comprar. */
+    window.VAULT_CHECKOUT = "";
+    (function () {
+      var ck = window.VAULT_CHECKOUT;
+      document.querySelectorAll("[data-checkout]").forEach(function (a) {
+        if (ck) { a.href = ck; } else { var l = a.querySelector(".cta__label"); if (l) l.textContent = "Avísame cuando abra →"; }
+      });
+      if (ck) { var w = document.getElementById("avisame"); if (w) w.remove(); return; }
+      var f = document.getElementById("espera-form"), msg = document.getElementById("espera-msg");
+      f.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var em = document.getElementById("espera-email").value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { msg.textContent = "Revisa el email."; msg.className = "capture__msg is-err"; return; }
+        if (!document.getElementById("espera-consent").checked) { msg.textContent = "Marca el consentimiento."; msg.className = "capture__msg is-err"; return; }
+        msg.textContent = "Enviando…"; msg.className = "capture__msg";
+        window.kitSubscribe(em, "vault-espera", "vault").then(function (r) {
+          if (!r.ok) throw 0;
+          f.querySelector(".capture__row").style.display = "none";
+          msg.textContent = "Hecho. Revisa tu correo y confirma la suscripción: te aviso en cuanto abra.";
+          msg.className = "capture__msg is-ok";
+        }).catch(function () { msg.textContent = "No se ha podido enviar. Prueba en un momento o escríbeme a contacto@edrianexe.com."; msg.className = "capture__msg is-err"; });
+      });
+    })();
+  </script>
   <script src="app.js"></script>
+  <script src="ecosistema.js"></script>
 </body>
 </html>

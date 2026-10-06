@@ -269,3 +269,29 @@ strong { color: var(--text); font-weight: 700; }
   .capture__row { flex-direction: column; }
   .cta--primary { width: 100%; }
 }
+
+/* ── Ecosistema: libro + recursos + canales ─────────────────────────────*/
+.eco { margin: 56px 0 8px; }
+.eco__libro {
+  display: grid; grid-template-columns: minmax(0, 220px) 1fr; gap: 22px; align-items: center;
+  padding: 20px; border: 1px solid var(--border-2); border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(244,114,182,.08), rgba(34,211,238,.06));
+  color: var(--text); transition: transform .2s, border-color .2s;
+}
+.eco__libro:hover { transform: translateY(-2px); border-color: var(--cyan); color: var(--text); }
+.eco__libro img { width: 100%; height: auto; border-radius: 10px; display: block; }
+.eco__libro h3 { font: 700 clamp(20px, 3vw, 26px)/1.15 var(--font-display); margin: 6px 0 2px; }
+.eco__libro em { color: var(--pink); font-style: normal; font-weight: 600; }
+.eco__libro p { color: var(--text-mute); margin: 10px 0 16px; font-size: 15px; }
+.eco__tag { font: 600 11px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); }
+.eco__h { font: 600 12px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim); margin: 32px 0 12px; }
+.eco__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+.eco__grid--can { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.eco__res, .eco__can {
+  display: flex; flex-direction: column; gap: 2px; padding: 14px 16px;
+  border: 1px solid var(--border); border-radius: 12px; background: var(--surface); color: var(--text);
+  transition: border-color .2s, background .2s;
+}
+.eco__res:hover, .eco__can:hover { border-color: var(--cyan); background: var(--surface-2); color: var(--text); }
+.eco__res span, .eco__can span { color: var(--text-mute); font-size: 13px; }
+@media (max-width: 560px) { .eco__libro { grid-template-columns: 1fr; } }
